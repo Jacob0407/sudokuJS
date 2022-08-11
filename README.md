@@ -184,3 +184,8 @@ MIT
 0.3.0 Board generator, easy - very hard  
 0.2.0 Simple UI and better interface  
 0.1.0 Step by step sudoku solver  
+
+### Install
+npm init
+npm install express
+node app.js
