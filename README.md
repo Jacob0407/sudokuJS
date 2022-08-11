@@ -188,4 +188,4 @@ MIT
 ### Install
 npm init
 npm install express
-node app.js
+node app.js or nohup node app.js > test.log & exit 
