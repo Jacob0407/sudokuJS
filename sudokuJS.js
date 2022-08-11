@@ -189,14 +189,14 @@
 		/* generateHouseIndexList
 		 * -----------------------------------------------------------------*/
 		var generateHouseIndexList = function(){
-        // reset houses
-        houses = [
-				//hor. rows
-				[],
-				//vert. rows
-				[],
-				//boxes
-				[]
+			// reset houses
+			houses = [
+					//hor. rows
+					[],
+					//vert. rows
+					[],
+					//boxes
+					[]
 			]
 			var boxSideSize = Math.sqrt(boardSize);
 
@@ -240,7 +240,7 @@
 		var initBoard = function(opts){
 			var alreadyEnhanced = (board[0] !== null && typeof board[0] === "object");
 			var nullCandidateList = [];
-      boardNumbers = [];
+      		boardNumbers = [];
 			boardSize = (!board.length && opts.boardSize) || Math.sqrt(board.length) || 9;
 			$board.attr("data-board-size", boardSize);
 			if(boardSize % 1 !== 0 || Math.sqrt(boardSize) % 1 !== 0) {
@@ -1486,6 +1486,7 @@
 				//check if that finished board
 				if(isBoardFinished()){
 					boardFinished = true;
+					infoPrompt("<b>厉害厉害！<br/><br/>话说，你晓得那些数字的意思嘛</b>", 10000);
 					log("user finished board!");
 					if(typeof opts.boardFinishedFn === "function"){
 						opts.boardFinishedFn({
@@ -1786,7 +1787,7 @@
 		};
 
 		var setBoard = function(newBoard){
-      clearBoard(); // if any pre-existing
+      		clearBoard(); // if any pre-existing
 			board = newBoard;
 			initBoard();
 			visualEliminationOfCandidates();
@@ -1806,6 +1807,34 @@
 			editingCandidates = newVal;
 		};
 
+
+		var prompt = function(message, style, time)
+		{
+			style = (style === undefined) ? 'alert-success' : style;
+			time = (time === undefined) ? 1200 : time;
+			$('<div id="promptModal">')
+				.appendTo('body')
+				.addClass('alert '+ style)
+				.css({"display":"block",
+					"z-index":99999,
+					"left":($(document.body).outerWidth(true) - 265) / 2,
+					"top":($(window).height() - 130) / 2,
+					"position": "absolute",
+					"padding": "20px",
+					"border-radius": "5px"})
+				.html(message)
+				.show()
+				.delay(time)
+				.fadeOut(10, function(){
+					$('#promptModal').remove();
+				});
+		};
+
+		var infoPrompt = function(message, time)
+		{
+			prompt(message, 'alert-pormpt', time);
+		};
+
 		return {
 			solveAll : solveAll,
 			solveStep : solveStep,
@@ -1816,7 +1845,8 @@
 			hideCandidates : hideCandidates,
 			showCandidates : showCandidates,
 			setEditingCandidates: setEditingCandidates,
-			generateBoard : generateBoard
+			generateBoard : generateBoard,
+			infoPrompt: infoPrompt,
 		};
 	};
 
