@@ -13,7 +13,7 @@
 		display: inline-block;
 		position: relative;
 		border: 1px solid #ddd;
-		background: white;
+		background: #FEFFFE;
 		max-width: 11.11111%;
 	}
 		/*rules for drawing the black lines dividing houses
@@ -60,6 +60,9 @@
 			.sudoku-board-cell .board-cell--error {
 				background: #d00;
 				color: #eee;
+			}
+			.fixed-cell {
+				background: #FAF5D8;
 			}
 		/*wrapper that hold the candidates for each cell*/
 		.sudoku-board-cell .candidates {

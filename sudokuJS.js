@@ -87,7 +87,6 @@
 			board = [],
 			boardSize,
 			boardNumbers, // array of 1-9 by default, generated in initBoard
-			init_board_index = [],
 
 		//indexes of cells in each house - generated on the fly based on boardSize
 			houses = [
@@ -266,11 +265,6 @@
 						candidates: candidates
 						//title: "" possibl add in 'A1. B1...etc
 					};
-					
-					if (cellVal !== null)
-					{
-						init_board_index.push(j);
-					}
 				}
 			}
 		};
@@ -314,7 +308,7 @@
 							"<div id='input-"+id+"-candidates' class='candidates'>" + candidatesString + "</div>" +
 						"</div>";
 			
-			return "<div class='sudoku-board-cell'>" +
+			return "<div class='sudoku-board-cell fixed-cell'>" +
 						//want to use type=number, but then have to prevent chrome scrolling and up down key behaviors..
 						"<input type='text' disabled='disabled' pattern='\\d*' novalidate id='input-"+id+"' value='"+val+"'"+maxlength+">" +
 						"<div id='input-"+id+"-candidates' class='candidates'>" + candidatesString + "</div>" +
